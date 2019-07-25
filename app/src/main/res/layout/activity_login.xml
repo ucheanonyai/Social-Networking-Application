@@ -24,7 +24,8 @@
         android:drawableStart="@drawable/ic_action_username"
         android:ems="10"
         android:hint="Username"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="#00090808" />
 
     <EditText
         android:id="@+id/passwordText"
@@ -42,7 +43,8 @@
         android:drawableStart="@drawable/ic_action_lock"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="#00141212" />
 
 
     <android.support.constraint.ConstraintLayout
