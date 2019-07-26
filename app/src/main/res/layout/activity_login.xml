@@ -23,6 +23,7 @@
 
         <EditText
             android:id="@+id/editText2"
+            android:background="@drawable/edit_teext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="272dp"
@@ -37,6 +38,7 @@
 
         <EditText
             android:id="@+id/passwordText"
+            android:background="@drawable/edit_teext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -52,6 +54,7 @@
 
         <Button
             android:id="@+id/loginButton"
+            android:background="@drawable/login_shape"
             android:layout_width="181dp"
             android:layout_height="56dp"
             android:layout_marginTop="456dp"
@@ -67,6 +70,7 @@
 
         <Button
             android:id="@+id/googleButton"
+            android:background="@drawable/signup_shape"
             android:layout_width="181dp"
             android:layout_height="56dp"
             android:layout_marginTop="8dp"
