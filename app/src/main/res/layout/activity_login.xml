@@ -58,7 +58,7 @@
             android:hint="@string/password_hint"
             android:inputType="textPassword"
             android:textColor="#fff"
-            app:layout_constraintBottom_toTopOf="@+id/loginButton"
+            app:layout_constraintBottom_toTopOf="@+id/signupButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.956"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +66,7 @@
             app:layout_constraintVertical_bias="0.81" />
 
         <Button
-            android:id="@+id/loginButton"
+            android:id="@+id/signupButton"
             android:layout_width="181dp"
             android:layout_height="56dp"
             android:layout_marginStart="8dp"
@@ -102,6 +102,28 @@
             app:layout_constraintVertical_bias="0.714"
             tools:layout_conversion_absoluteHeight="65dp"
             tools:layout_conversion_absoluteWidth="88dp" />
+
+        <TextView
+            android:id="@+id/textViewsignup"
+            android:layout_width="337dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/textviewsignUp"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#D32F2F"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/googleButton"
+            app:layout_constraintVertical_bias="0.46"
+            tools:text="@string/textviewsignUp" />
+
     </android.support.constraint.ConstraintLayout>
 
 </RelativeLayout>
