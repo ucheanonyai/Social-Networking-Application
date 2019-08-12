@@ -41,7 +41,7 @@
             app:layout_constraintHorizontal_bias="0.956"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.341" />
+            app:layout_constraintVertical_bias="0.416" />
 
         <EditText
             android:id="@+id/passwordText"
@@ -58,15 +58,15 @@
             android:hint="@string/password_hint"
             android:inputType="textPassword"
             android:textColor="#fff"
-            app:layout_constraintBottom_toTopOf="@+id/signupButton"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.956"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.81" />
+            app:layout_constraintTop_toBottomOf="@+id/usernameText"
+            app:layout_constraintVertical_bias="0.021" />
 
         <Button
-            android:id="@+id/signupButton"
+            android:id="@+id/loginButton"
             android:layout_width="181dp"
             android:layout_height="56dp"
             android:layout_marginStart="8dp"
