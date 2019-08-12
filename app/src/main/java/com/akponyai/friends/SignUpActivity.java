@@ -63,11 +63,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-        mAuth.createUserWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+        mAuth.createUserWithEmailAndPassword(username,password).addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getApplicationContext(),"User Registeration Successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"User Registration Successful", Toast.LENGTH_SHORT).show();
+                }
+
+                else{
+                    Toast.makeText(getApplicationContext(),"Some error occurred", Toast.LENGTH_SHORT).show();
                 }
             }
         });
