@@ -8,4 +8,7 @@
     <string name="textviewsignUp">Dont have an account? Sign Up</string>
     <string name="textviewlogin">Already have an account? Log In</string>
     <string name="signupButton">SIGN UP</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="create_post">Create Post</string>
 </resources>

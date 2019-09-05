@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextPassword = (EditText) findViewById(R.id.passwordText);
         loginButton = (Button) findViewById(R.id.loginButton);
 
-        googleButton = findViewById(R.id.sign_in_button);
+        googleButton = (SignInButton) findViewById(R.id.sign_in_button);
 
 
         //configure google sign in
@@ -80,12 +80,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mAuth=FirebaseAuth.getInstance();
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addUser();
-            }
-        });
+
 
         findViewById(R.id.textViewsignup).setOnClickListener(this);
         findViewById(R.id.loginButton).setOnClickListener(this);
@@ -210,22 +205,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void addUser() {
-        String name = editTextUsername.getText().toString();
-        String password = editTextPassword.getText().toString();
 
-        if (!TextUtils.isEmpty(name) || !TextUtils.isEmpty(password)) {
-            String id = databaseUsers.push().getKey();
-
-            Users user = new Users(name, password);
-
-            databaseUsers.child(id).setValue(user);
-
-            Toast.makeText(this, "User profile created", Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "Enter username or password", Toast.LENGTH_LONG).show();
-        }
-
-    }
 
 }

@@ -94,7 +94,7 @@ public class PostActivity extends AppCompatActivity {
                 }
 
                 else{
-                    Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Permission Denied",Toast.LENGTH_SHORT).show();
                 }
                 }
         }
