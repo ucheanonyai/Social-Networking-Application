@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,11 +20,18 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.nbsp.materialfilepicker.MaterialFilePicker;
 import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.regex.Pattern;
 
 public class PostActivity extends AppCompatActivity {
@@ -33,6 +41,12 @@ public class PostActivity extends AppCompatActivity {
     private Button postbutton;
     private EditText postdescription;
 
+    private Uri postUri;
+    private String description;
+
+    private StorageReference postReference;
+    private String saveCurrentDate, saveCurrentTime, postRandomName;
+
     private static final int file_pick=1;
 
 
@@ -41,6 +55,8 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
+
+        postReference = FirebaseStorage.getInstance().getReference();
 
         SelectPostImage=(Button)findViewById(R.id.picturebutton);
         postbutton=(Button)findViewById(R.id.postbutton);
@@ -72,14 +88,67 @@ public class PostActivity extends AppCompatActivity {
                         .start();
             }
         });
+
+
+        postbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               ValidatePost();
+            }
+        });
     }
+
+
+
+    private void ValidatePost() {
+        String description = postdescription.getText().toString();
+
+        if(postUri==null && description==null){
+            Toast.makeText(this,"Add informtation to post", Toast.LENGTH_SHORT).show();
+        }
+
+        else{
+            StoringFileToFirebaseStorage();
+        }
+    }
+
+    private void StoringFileToFirebaseStorage() {
+        Calendar callForDate=Calendar.getInstance();
+        SimpleDateFormat currentDate= new SimpleDateFormat("dd-MMMM-yyyy");
+        saveCurrentDate=currentDate.format(callForDate.getTime());
+
+        Calendar callForTime=Calendar.getInstance();
+        SimpleDateFormat currentTime= new SimpleDateFormat("HH:mm");
+        saveCurrentTime=currentTime.format(callForTime.getTime());
+
+        postRandomName=saveCurrentDate+saveCurrentTime;
+
+        StorageReference filePath= postReference.child("Files").child(postUri.getLastPathSegment()+postRandomName + ".pdf");
+
+        filePath.putFile(postUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                if(task.isSuccessful()){
+                    Toast.makeText(PostActivity.this,"File uploaded to Firebase Storage",Toast.LENGTH_SHORT).show();
+                }
+
+                else{
+                    String message=task.getException().getMessage();
+                    Toast.makeText(PostActivity.this,"Error Occured"+message,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 1000 && resultCode == RESULT_OK) {
+        if (requestCode == 1000 && resultCode == RESULT_OK && data!=null) {
             String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+            postUri = data.getData();
             // Do anything with file
             Toast.makeText(this,"Uploading"+filePath,Toast.LENGTH_SHORT).show();
         }
